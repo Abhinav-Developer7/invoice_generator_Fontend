@@ -10,18 +10,13 @@ import {
 import DashboardLayout from './layouts/DashboardLayout.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Projects from './pages/project.jsx'
+import CreateInvoice from './pages/CreateInvoice.jsx'
 import './App.css'
 
 // Placeholder metadata map for upcoming modules
 const PLACEHOLDER_CONFIG = {
 
-  'create-invoice': {
-    title: 'Create New Invoice',
-    icon: FilePlus2,
-    tag: 'Stage 2 Feature',
-    description:
-      'The Invoice Builder interface will support multi-currency line items, automated GST/tax calculation, client address lookup, and instant preview.',
-  },
+
   'invoice-history': {
     title: 'Invoice History & Archive',
     icon: ReceiptText,
@@ -78,7 +73,7 @@ export default function App() {
           <Route path="projects" element={<Projects />} />
           <Route
             path="create-invoice"
-            element={<PlaceholderPage type="create-invoice" />}
+            element={<CreateInvoice />}
           />
           <Route
             path="invoice-history"
