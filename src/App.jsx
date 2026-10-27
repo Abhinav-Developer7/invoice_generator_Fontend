@@ -11,19 +11,14 @@ import DashboardLayout from './layouts/DashboardLayout.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Projects from './pages/project.jsx'
 import CreateInvoice from './pages/CreateInvoice.jsx'
+import InvoiceHistory from './pages/InvoiceHistory.jsx'
 import './App.css'
 
 // Placeholder metadata map for upcoming modules
 const PLACEHOLDER_CONFIG = {
 
 
-  'invoice-history': {
-    title: 'Invoice History & Archive',
-    icon: ReceiptText,
-    tag: 'Stage 2 Feature',
-    description:
-      'Complete chronological audit log of all issued, settled, cancelled, and recurring invoices with export options for Excel and PDF.',
-  },
+
   settings: {
     title: 'System Settings',
     icon: Settings,
@@ -77,7 +72,7 @@ export default function App() {
           />
           <Route
             path="invoice-history"
-            element={<PlaceholderPage type="invoice-history" />}
+            element={<InvoiceHistory />}
           />
           <Route path="settings" element={<PlaceholderPage type="settings" />} />
           <Route path="*" element={<PlaceholderPage type="not-found" />} />
