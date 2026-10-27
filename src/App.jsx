@@ -1,122 +1,98 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import {
+  FolderGit2,
+  FilePlus2,
+  ReceiptText,
+  Settings,
+  ArrowLeft,
+  HelpCircle,
+} from 'lucide-react'
+import DashboardLayout from './layouts/DashboardLayout.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+// Placeholder metadata map for upcoming modules
+const PLACEHOLDER_CONFIG = {
+  projects: {
+    title: 'Projects Management',
+    icon: FolderGit2,
+    tag: 'Stage 2 Feature',
+    description:
+      'The Projects workspace will allow grouping invoices by project milestones, managing contractor retainers, and tracking client budgets.',
+  },
+  'create-invoice': {
+    title: 'Create New Invoice',
+    icon: FilePlus2,
+    tag: 'Stage 2 Feature',
+    description:
+      'The Invoice Builder interface will support multi-currency line items, automated GST/tax calculation, client address lookup, and instant preview.',
+  },
+  'invoice-history': {
+    title: 'Invoice History & Archive',
+    icon: ReceiptText,
+    tag: 'Stage 2 Feature',
+    description:
+      'Complete chronological audit log of all issued, settled, cancelled, and recurring invoices with export options for Excel and PDF.',
+  },
+  settings: {
+    title: 'System Settings',
+    icon: Settings,
+    tag: 'Stage 3 Feature',
+    description:
+      'Company fiscal year preferences, tax rate rules, email reminder templates, and team role-based access controls.',
+  },
+}
+
+// Reusable Placeholder Page Component
+function PlaceholderPage({ type }) {
+  const meta = PLACEHOLDER_CONFIG[type] || {
+    title: 'Workspace Module',
+    icon: HelpCircle,
+    tag: 'Upcoming',
+    description: 'This module is scheduled for the upcoming development phase.',
+  }
+
+  const IconComponent = meta.icon
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="placeholder-view-card">
+      <div className="placeholder-icon-wrap" aria-hidden="true">
+        <IconComponent size={28} />
+      </div>
 
-      <div className="ticks"></div>
+      <span className="placeholder-tag">{meta.tag}</span>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <h1 className="placeholder-title">{meta.title}</h1>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <p className="placeholder-text">{meta.description}</p>
+
+      <Link to="/" className="btn-primary" style={{ marginTop: '12px' }}>
+        <ArrowLeft size={16} aria-hidden="true" />
+        <span>Return to Dashboard</span>
+      </Link>
+    </div>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="projects" element={<PlaceholderPage type="projects" />} />
+          <Route
+            path="create-invoice"
+            element={<PlaceholderPage type="create-invoice" />}
+          />
+          <Route
+            path="invoice-history"
+            element={<PlaceholderPage type="invoice-history" />}
+          />
+          <Route path="settings" element={<PlaceholderPage type="settings" />} />
+          <Route path="*" element={<PlaceholderPage type="not-found" />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
