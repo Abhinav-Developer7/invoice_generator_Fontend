@@ -9,17 +9,12 @@ import {
 } from 'lucide-react'
 import DashboardLayout from './layouts/DashboardLayout.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Projects from './pages/project.jsx'
 import './App.css'
 
 // Placeholder metadata map for upcoming modules
 const PLACEHOLDER_CONFIG = {
-  projects: {
-    title: 'Projects Management',
-    icon: FolderGit2,
-    tag: 'Stage 2 Feature',
-    description:
-      'The Projects workspace will allow grouping invoices by project milestones, managing contractor retainers, and tracking client budgets.',
-  },
+
   'create-invoice': {
     title: 'Create New Invoice',
     icon: FilePlus2,
@@ -80,7 +75,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="projects" element={<PlaceholderPage type="projects" />} />
+          <Route path="projects" element={<Projects />} />
           <Route
             path="create-invoice"
             element={<PlaceholderPage type="create-invoice" />}
