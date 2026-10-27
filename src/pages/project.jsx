@@ -9,6 +9,8 @@ import {
     Phone,
     X,
 } from "lucide-react";
+import { useEffect } from "react";
+import api from "../Api/api";
 import "./project.css";
 
 const emptyForm = {
@@ -24,6 +26,29 @@ export default function Projects() {
     const [projects, setProjects] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                setLoading(true);
+                const response = await api.get("/projects/Retrive");
+                setProjects(response.data);
+                setError("");
+            } catch (error) {
+                setError(
+                    error.response?.data?.message ||
+                    "Failed to load projects. Please check the backend."
+                );
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProjects();
+    }, []);
+
 
     const handleChange = (e) => {
         setFormData((prev) => ({
@@ -32,19 +57,25 @@ export default function Projects() {
         }));
     };
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
 
-        const newProject = {
-            id: Date.now(),
-            ...formData,
-            createdAt: new Date().toLocaleDateString("en-IN"),
-        };
+        try {
+            const response = await api.post("/projects/Add", formData);
 
-        setProjects((prev) => [newProject, ...prev]);
-        setFormData(emptyForm);
-        setIsFormOpen(false);
+            setProjects((prev) => [response.data.project, ...prev]);
+            setFormData(emptyForm);
+            setIsFormOpen(false);
+        } catch (error) {
+            setError(
+                error.response?.data?.message ||
+                "Failed to save project. Please try again."
+            );
+        }
     };
+
 
     const handleCloseForm = () => {
         setIsFormOpen(false);
@@ -215,6 +246,11 @@ export default function Projects() {
 
             {/* Projects Listing */}
             <section className="project-list-card">
+
+                {loading && <p>Loading projects...</p>}
+
+                {error && <p role="alert">{error}</p>}
+
                 <div className="project-list-header">
                     <div>
                         <h2>All Projects</h2>
@@ -249,7 +285,7 @@ export default function Projects() {
                         <tbody>
                             {filteredProjects.length > 0 ? (
                                 filteredProjects.map((project) => (
-                                    <tr key={project.id}>
+                                    <tr key={project._id}>
                                         <td className="project-name-cell">
                                             {project.projectName}
                                         </td>
@@ -257,7 +293,11 @@ export default function Projects() {
                                         <td>{project.contactPerson}</td>
                                         <td>{project.email}</td>
                                         <td>{project.phone || "—"}</td>
-                                        <td>{project.createdAt}</td>
+                                        <td>
+                                            {project.createdAt
+                                                ? new Date(project.createdAt).toLocaleDateString("en-IN")
+                                                : "—"}
+                                        </td>
                                     </tr>
                                 ))
                             ) : (

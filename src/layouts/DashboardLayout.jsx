@@ -44,6 +44,7 @@ export default function DashboardLayout() {
           onOpenMenu={() => setIsMobileMenuOpen(true)}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+
         />
 
         <main className="dashboard-layout-content" id="main-content">

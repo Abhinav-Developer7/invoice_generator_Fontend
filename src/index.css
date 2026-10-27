@@ -1,6 +1,7 @@
 /* ==========================================================================
    Design Tokens & Global CSS Reset - Black & White Identity
    ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   /* Strictly Black & White / Neutral Palette */
@@ -69,7 +70,7 @@ body {
   width: 100%;
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: var(--font-sans);
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -92,22 +93,26 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
+  font-family: "Inter", sans-serif;
 }
 
 button {
   cursor: pointer;
   background: none;
   border: none;
+  font-family: "Inter", sans-serif;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  font-family: "Inter", sans-serif;
 }
 
 table {
   border-collapse: collapse;
   width: 100%;
+  font-family: "Inter", sans-serif;
 }
 
 /* Accessibility Focus States */

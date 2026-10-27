@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Search, Bell, Menu, X, ChevronRight } from 'lucide-react'
+import { Search, Bell, Menu, X, ChevronRight, Sun, Moon } from 'lucide-react'
 import { USER_PROFILE } from '../data/mockData.js'
 import './Topbar.css'
 
-export default function Topbar({ onOpenMenu, searchQuery, onSearchChange }) {
+export default function Topbar({
+  onOpenMenu,
+  searchQuery,
+  onSearchChange,
+  theme,
+  onThemeChange,
+}) {
   const location = useLocation()
   const [notificationToast, setNotificationToast] = useState(null)
-
+  const [isThemePanelOpen, setIsThemePanelOpen] = useState(false)
   // Derive breadcrumb from current URL pathname
   const getBreadcrumb = () => {
     switch (location.pathname) {
