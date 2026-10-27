@@ -12,21 +12,11 @@ import Dashboard from './pages/Dashboard.jsx'
 import Projects from './pages/project.jsx'
 import CreateInvoice from './pages/CreateInvoice.jsx'
 import InvoiceHistory from './pages/InvoiceHistory.jsx'
+import SettingsPage from './pages/settings.jsx'
 import './App.css'
 
-// Placeholder metadata map for upcoming modules
-const PLACEHOLDER_CONFIG = {
 
 
-
-  settings: {
-    title: 'System Settings',
-    icon: Settings,
-    tag: 'Stage 3 Feature',
-    description:
-      'Company fiscal year preferences, tax rate rules, email reminder templates, and team role-based access controls.',
-  },
-}
 
 // Reusable Placeholder Page Component
 function PlaceholderPage({ type }) {
@@ -74,7 +64,7 @@ export default function App() {
             path="invoice-history"
             element={<InvoiceHistory />}
           />
-          <Route path="settings" element={<PlaceholderPage type="settings" />} />
+          <Route path="settings" element={<SettingsPage />} />
           <Route path="*" element={<PlaceholderPage type="not-found" />} />
         </Route>
       </Routes>
