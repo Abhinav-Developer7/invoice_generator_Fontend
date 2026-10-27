@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Topbar Component Styles (Black & White Identity)
+   ========================================================================== */
+
+.app-topbar {
+  height: var(--topbar-height);
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-menu-trigger {
+  display: none;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-main);
+}
+
+.mobile-menu-trigger:hover {
+  background-color: var(--bg-hover);
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.breadcrumb-root {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.breadcrumb-separator {
+  color: var(--color-gray-400);
+  width: 14px;
+  height: 14px;
+}
+
+.breadcrumb-current {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-search-form {
+  position: relative;
+  width: 320px;
+}
+
+.search-icon-wrapper {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.topbar-search-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 36px 0 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  font-size: 13px;
+  transition: border-color var(--transition-fast);
+}
+
+.topbar-search-input:hover {
+  border-color: var(--border-dark);
+}
+
+.topbar-search-input:focus {
+  outline: none;
+  border-color: var(--color-black);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-search-btn:hover {
+  color: var(--text-main);
+  background-color: var(--bg-active);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-action-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.icon-action-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-main);
+}
+
+.notification-badge-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-black);
+}
+
+.quick-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 4px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.profile-avatar-mini {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-notification-toast {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 10px 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-dismiss-btn {
+  color: var(--color-white);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Media Queries */
+@media (max-width: 1024px) {
+  .mobile-menu-trigger {
+    display: flex;
+  }
+
+  .app-topbar {
+    padding: 0 20px;
+  }
+
+  .topbar-search-form {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar-search-form {
+    display: none;
+  }
+
+  .quick-profile-badge span {
+    display: none;
+  }
+}
